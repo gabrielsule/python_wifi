@@ -8,7 +8,10 @@ def getWifi():
         if 'Perfil de todos los usuarios' in i:
             wifi = i.split(':')[1]
             print(wifi)
-
+            wifi = wifi.replace('\r', '').strip()
+           
+            getPwd(wifi)
+            
 
 def getPwd(_wifi):
     res = subprocess.check_output(['netsh', 'wlan', 'show', 'profile', _wifi, 'key=clear'])
@@ -20,7 +23,4 @@ def getPwd(_wifi):
             print(pwd)
 
 
-
 getWifi()
-
-# getPwd("nombre de la red")
